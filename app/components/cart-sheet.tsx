@@ -74,7 +74,7 @@ export default function CartSheet({ children }: CartSheetProps) {
       <SheetTrigger asChild>
         {children}
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="bg-white text-slate-600">
         <div className="flex items-center justify-between">
           <SheetTitle>Shopping Cart</SheetTitle>
           <SheetClose asChild>

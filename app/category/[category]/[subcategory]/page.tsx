@@ -1,13 +1,38 @@
 import { getProductsByCategory } from '@/lib/products'
 import ProductCard from '@/app/components/product-card'
 import categories from '@/lib/categories'
+import type { Metadata } from 'next'
 
-export default async function SubcategoryPage({
-  params
-}: {
-  params: { category: string; subcategory: string }
-}) {
-  const { category, subcategory } = params
+type PageProps = {
+  params: Promise<{ category: string; subcategory: string }>
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const resolvedParams = await params
+  const categoryData = categories.find(c => c.slug === resolvedParams.category)
+  const subcategoryData = categoryData?.subcategories?.find(s => s.slug === resolvedParams.subcategory)
+  
+  return {
+    title: `${categoryData?.name || resolvedParams.category} - ${subcategoryData?.name || resolvedParams.subcategory}`,
+  }
+}
+
+export async function generateStaticParams() {
+  const paths = categories.flatMap((category) =>
+    (category.subcategories || []).map((subcategory) => ({
+      category: category.slug,
+      subcategory: subcategory.slug,
+    }))
+  )
+  return paths
+}
+
+export default async function Page({
+  params,
+}: PageProps) {
+  const { category, subcategory } = await params
   const products = getProductsByCategory(category, subcategory)
   const categoryData = categories.find(c => c.slug === category)
   const subcategoryData = categoryData?.subcategories?.find(s => s.slug === subcategory)

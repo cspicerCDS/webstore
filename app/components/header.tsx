@@ -132,8 +132,8 @@ export default function Component() {
 
   return (
     <header className="sticky top-0 z-[100] w-full border-b bg-slate-900 dark:border-slate-800 dark:bg-slate-950">
-      <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-6">
-        <div className="flex items-center gap-2">
+      <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-2 md:px-6">
+        <div className="flex items-center ">
           <Button 
             variant="ghost" 
             size="icon" 
@@ -156,7 +156,7 @@ export default function Component() {
             </Link>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="rounded-full">
@@ -171,7 +171,7 @@ export default function Component() {
                   type="search" 
                   name="q" 
                   placeholder="Search..." 
-                  className="pl-8 w-full" 
+                  className="pl-8 w-full text-base" 
                 />
               </form>
             </DropdownMenuContent>

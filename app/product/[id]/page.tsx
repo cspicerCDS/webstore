@@ -1,13 +1,21 @@
-import Image from "next/image"
-import { mockProducts } from "@/lib/products"
-import AddToCartButton from "@/app/components/add-to-cart-button"
+import { mockProducts } from '@/lib/products'
+import Image from 'next/image'
+import AddToCartButton from '@/app/components/add-to-cart-button'
+
+type ProductPageProps = {
+  params: Promise<{ id: string }>
+}
+
+export async function generateStaticParams() {
+  return mockProducts.map((product) => ({
+    id: product.id.toString(),
+  }))
+}
 
 export default async function ProductPage({
   params
-}: {
-  params: { id: string }
-}) {
-  const { id } = params
+}: ProductPageProps) {
+  const { id } = await params
   const product = mockProducts.find(p => p.id === parseInt(id))
 
   if (!product) {
@@ -42,6 +50,9 @@ export default async function ProductPage({
             </p>
           </div>
 
+          {/* Add to Cart Button */}
+          <AddToCartButton product={product} />
+
           {/* Product Attributes */}
           <div className="mt-6 border-t pt-6">
             <h2 className="text-lg font-semibold mb-4">Product Details</h2>
@@ -56,29 +67,6 @@ export default async function ProductPage({
               ))}
             </dl>
           </div>
-
-          {/* Tags */}
-          {product.tags.length > 0 && (
-            <div className="flex gap-2 flex-wrap mt-4">
-              {product.tags.map(tag => (
-                <span 
-                  key={tag} 
-                  className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-
-          {/* Special Badge */}
-          {product.specialBadge && (
-            <div className="inline-block px-4 py-2 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100 rounded-md">
-              {product.specialBadge}
-            </div>
-          )}
-
-          <AddToCartButton product={product} />
         </div>
       </div>
     </div>

@@ -34,7 +34,8 @@ export default function AddToCartButton({ product }: { product: Product }) {
     toast({
       title: "Added to Cart",
       description: `${product.name} has been added to your cart.`,
-      duration: 2000
+      duration: 2000,
+      className: "bg-white text-slate-600"
     })
   }
 

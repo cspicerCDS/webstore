@@ -6,8 +6,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getBasePath() {
-  // Check if we're in development or production
-  return process.env.NODE_ENV === 'development' 
-    ? '' 
-    : '/platterparty'
+  // Next.js basePath handles this automatically
+  return ''
 } 

@@ -2,11 +2,20 @@ import { getProductsByCategory } from '@/lib/products'
 import ProductCard from '@/app/components/product-card'
 import categories from '@/lib/categories'
 
-export default function CategoryPage({
-  params: { category }
-}: {
-  params: { category: string }
-}) {
+type CategoryPageProps = {
+  params: Promise<{ category: string }>
+}
+
+export async function generateStaticParams() {
+  return categories.map((category) => ({
+    category: category.slug,
+  }))
+}
+
+export default async function CategoryPage({
+  params,
+}: CategoryPageProps) {
+  const { category } = await params
   const products = getProductsByCategory(category)
   const categoryData = categories.find(c => c.slug === category)
 

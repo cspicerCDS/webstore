@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import categories from "@/lib/categories"
 import { useNav } from "./nav-context"
-import { getBasePath } from "@/lib/utils"
+//import { getBasePath } from "@/lib/utils"
 
 function CloseIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -34,7 +34,7 @@ export default function Nav() {
   return (
     <>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetContent side="left" className="w-[300px] sm:w-[400px] md:hidden flex flex-col p-0">
+        <SheetContent side="left" className="w-[300px] sm:w-[400px] md:hidden flex flex-col p-0 bg-white text-slate-600">
           <SheetHeader className="flex flex-row items-center justify-between border-b p-6">
             <SheetTitle className="text-lg font-bold h-5">Categories</SheetTitle>
             <SheetClose asChild>
@@ -59,7 +59,7 @@ export default function Nav() {
                             {category.subcategories.map((subcategory) => (
                               <Link
                                 key={subcategory.id}
-                                href={`${getBasePath()}/category/${category.slug}/${subcategory.slug}`}
+                                href={`/category/${category.slug}/${subcategory.slug}`}
                                 className="text-sm text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-50 py-2"
                                 onClick={() => setIsOpen(false)}
                               >
@@ -72,7 +72,7 @@ export default function Nav() {
                     </Accordion>
                   ) : (
                     <Link
-                      href={`${getBasePath()}/category/${category.slug}`}
+                      href={`/category/${category.slug}`}
                       className="text-sm block py-2"
                       onClick={() => setIsOpen(false)}
                     >
@@ -98,13 +98,14 @@ export default function Nav() {
                 >
                   <div className="flex items-center gap-1">
                     <Link
-                      href={`${getBasePath()}/category/${category.slug}`}
+                      href={`/category/${category.slug}`}
                       className="inline-flex items-center text-slate-300 hover:text-slate-200 dark:text-slate-300 dark:hover:text-slate-50"
                     >
                       {category.name}
                     </Link>
                     {category.subcategories && (
                       <button
+                        aria-label="Open subcategories"
                         className="inline-flex items-center text-slate-300 hover:text-slate-200 dark:text-slate-300 dark:hover:text-slate-50"
                       >
                         <svg
@@ -128,7 +129,7 @@ export default function Nav() {
                       {category.subcategories.map((subcategory) => (
                         <Link
                           key={subcategory.id}
-                          href={`${getBasePath()}/category/${category.slug}/${subcategory.slug}`}
+                          href={`/category/${category.slug}/${subcategory.slug}`}
                           className="block px-4 py-2 text-sm text-slate-500 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-slate-50 dark:hover:bg-slate-800 rounded-sm"
                         >
                           {subcategory.name}

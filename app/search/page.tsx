@@ -1,29 +1,36 @@
+'use client'
+
+import { useState, useEffect, Suspense } from 'react'
 import { mockProducts } from '@/lib/products'
 import ProductCard from '@/app/components/product-card'
+import { useSearchParams } from 'next/navigation'
 
-export default function SearchPage({
-  searchParams
-}: {
-  searchParams: { q: string }
-}) {
-  const query = searchParams.q?.toLowerCase() || ''
+function SearchResults() {
+  const searchParams = useSearchParams()
+  const [searchResults, setSearchResults] = useState(mockProducts)
   
-  const searchResults = mockProducts.filter(product => {
-    const searchFields = [
-      product.name.toLowerCase(),
-      product.description.toLowerCase(),
-      ...product.tags.map(tag => tag.toLowerCase()),
-      product.category.toLowerCase(),
-      ...product.subCategory.map(sub => sub.toLowerCase())
-    ]
+  useEffect(() => {
+    const query = searchParams.get('q')?.toLowerCase() || ''
     
-    return searchFields.some(field => field.includes(query))
-  })
+    const filtered = mockProducts.filter(product => {
+      const searchFields = [
+        product.name.toLowerCase(),
+        product.description.toLowerCase(),
+        ...product.tags.map(tag => tag.toLowerCase()),
+        ...product.category.map(cat => cat.toLowerCase()),
+        ...product.subCategory.map(sub => sub.toLowerCase())
+      ]
+      
+      return searchFields.some(field => field.includes(query))
+    })
+    
+    setSearchResults(filtered)
+  }, [searchParams])
 
   return (
     <div className="py-8">
       <h1 className="text-2xl font-bold mb-6">
-        Search Results for &quot;{query}&quot;
+        Search Results for &quot;{searchParams.get('q') || ''}&quot;
       </h1>
       {searchResults.length === 0 ? (
         <p className="text-center text-gray-500">No products found</p>
@@ -35,5 +42,13 @@ export default function SearchPage({
         </div>
       )}
     </div>
+  )
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchResults />
+    </Suspense>
   )
 } 

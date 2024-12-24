@@ -2,17 +2,17 @@
 
 - [ ] header
     - [ X ] logo
-    - [ ] search
-    - [ ] cart
+    - [ x] search
+    - [x ] cart
     - [ ] user
-- [ ] nav menu
-- [ ] footer
-- [ ] home page
+- [x ] nav menu
+- [ x] footer
+- [ x] home page
 - [ ] category page
     - [ ] filter
     - [ ] sort
     - [ ] pagination
-- [ ] product page
+- [x] product page
 - [ ] cart page
 - [ ] checkout page
 - [ ] admin page

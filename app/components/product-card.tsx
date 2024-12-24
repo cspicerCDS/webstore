@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getBasePath } from '@/lib/utils'
+//import { getBasePath } from '@/lib/utils'
 import type { Product } from '@/lib/products'
 import { useToast } from "@/components/ui/use-toast"
 
@@ -38,13 +38,14 @@ export default function ProductCard({ product }: { product: Product }) {
     toast({
       title: "Added to Cart",
       description: `${product.name} has been added to your cart.`,
-      duration: 2000
+      duration: 2000,
+      className: "bg-white text-slate-600"
     })
   }
 
   return (
     <div className="group relative flex flex-col">
-      <Link href={`${getBasePath()}/product/${product.id}`} className="flex-1">
+      <Link href={`/product/${product.id}`} className="flex-1">
         <div className="aspect-square w-full overflow-hidden rounded-lg bg-gray-200">
           <Image
             src={product.images[0]}
@@ -57,7 +58,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
         <div className="mt-4 flex justify-between">
           <div>
-            <h3 className="text-sm text-gray-700 dark:text-gray-200">
+            <h3 className="text-base font-semibold text-gray-700 dark:text-gray-200">
               {product.name}
             </h3>
             <p className="mt-1 text-sm text-gray-500">{product.description}</p>

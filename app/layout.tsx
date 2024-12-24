@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Jost } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header";
 //import Nav from "./components/nav";
@@ -7,21 +7,22 @@ import Footer from "./components/footer";
 import { NavProvider } from './components/nav-context'
 import { Toaster } from "@/components/ui/toaster"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jost = Jost({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.chrismspicer.com/platterparty'),
-  title: "PlatterParty Music",
+  title: "Platter Party Music",
   description: "Your premier destination for vinyl records and music collectibles",
 };
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+
+}
 
 export default function RootLayout({
   children,
@@ -31,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${jost.className} antialiased min-h-screen flex flex-col`}
       >
         <NavProvider>
           <Header />

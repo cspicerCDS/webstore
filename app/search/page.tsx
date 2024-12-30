@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react'
 import { mockProducts } from '@/lib/products'
-import ProductCard from '@/app/components/product-card'
+import ProductCard from '@/components/product-card'
 import { useSearchParams } from 'next/navigation'
 
 function SearchResults() {

@@ -2,13 +2,13 @@
 
 import Link from "next/link"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdown-menu"
-import Nav from "./nav"
+import Nav from "@/components/nav"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { useNav } from "./nav-context"
+import { useNav } from "@/components/nav-context"
 import { getBasePath } from "@/lib/utils"
 import { useState, useEffect } from 'react'
-import CartSheet from './cart-sheet'
+import CartSheet from "@/components/cart-sheet"
 import { useRouter } from 'next/navigation'
 
 type CartItem = {

@@ -1,6 +1,6 @@
 import { mockProducts } from '@/lib/products'
 import Image from 'next/image'
-import AddToCartButton from '@/app/components/add-to-cart-button'
+import AddToCartButton from '@/components/add-to-cart-button'
 
 type ProductPageProps = {
   params: Promise<{ id: string }>

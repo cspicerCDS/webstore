@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Jost } from "next/font/google";
 import "./globals.css";
-import Header from "./components/header";
+import Header from "@/components/header";
 //import Nav from "./components/nav";
-import Footer from "./components/footer";
-import { NavProvider } from './components/nav-context'
+import Footer from "@/components/footer";
+import { NavProvider } from '@/components/nav-context'
 import { Toaster } from "@/components/ui/toaster"
 
 const jost = Jost({

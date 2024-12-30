@@ -1,5 +1,5 @@
 import { mockProducts } from "@/lib/products";
-import ProductCard from "./components/product-card";
+import ProductCard from "@/components/product-card";
 export default function Home() {
   // Shuffle once and split into sections
   const shuffledProducts = [...mockProducts].sort(() => Math.random() - 0.5);

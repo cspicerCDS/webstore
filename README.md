@@ -1,13 +1,13 @@
 ## TODO
 
 - [ ] header
-    - [ X ] logo
-    - [ x] search
-    - [x ] cart
+    - [X] logo
+    - [x] search
+    - [x] cart
     - [ ] user
-- [x ] nav menu
-- [ x] footer
-- [ x] home page
+- [x] nav menu
+- [x] footer
+- [x] home page
 - [ ] category page
     - [ ] filter
     - [ ] sort

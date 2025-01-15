@@ -176,7 +176,7 @@ export default function Component() {
               </form>
             </DropdownMenuContent>
           </DropdownMenu>
-          <Button variant="ghost" size="icon" className="rounded-full">
+          <Button variant="ghost" size="icon" className="rounded-full" onClick={() => router.push('/account')}>
             <UserIcon className="h-5 w-5 text-slate-300 " />
             <span className="sr-only">My Account</span>
           </Button>

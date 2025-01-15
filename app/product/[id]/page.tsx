@@ -1,25 +1,24 @@
-import { mockProducts } from '@/lib/products'
-import Image from 'next/image'
-import AddToCartButton from '@/components/add-to-cart-button'
+import { mockProducts } from "@/lib/products";
+import Image from "next/image";
+import AddToCartButton from "@/components/add-to-cart-button";
+import { Badge } from "@/components/ui/badge";
 
 type ProductPageProps = {
-  params: Promise<{ id: string }>
-}
+  params: Promise<{ id: string }>;
+};
 
 export async function generateStaticParams() {
   return mockProducts.map((product) => ({
     id: product.id.toString(),
-  }))
+  }));
 }
 
-export default async function ProductPage({
-  params
-}: ProductPageProps) {
-  const { id } = await params
-  const product = mockProducts.find(p => p.id === parseInt(id))
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { id } = await params;
+  const product = mockProducts.find((p) => p.id === parseInt(id));
 
   if (!product) {
-    return <div>Product not found</div>
+    return <div>Product not found</div>;
   }
 
   return (
@@ -40,14 +39,10 @@ export default async function ProductPage({
         <div className="flex flex-col gap-4">
           <h1 className="text-2xl font-bold">{product.name}</h1>
           <p className="text-lg text-gray-500">{product.description}</p>
-          
+
           <div className="flex items-center justify-between">
-            <p className="text-2xl font-bold">
-              ${product.price}
-            </p>
-            <p className="text-sm text-gray-500">
-              Stock: {product.stock}
-            </p>
+            <p className="text-2xl font-bold">${product.price}</p>
+            <p className="text-sm text-gray-500">Stock: {product.stock}</p>
           </div>
 
           {/* Add to Cart Button */}
@@ -57,18 +52,31 @@ export default async function ProductPage({
           <div className="mt-6 border-t pt-6">
             <h2 className="text-lg font-semibold mb-4">Product Details</h2>
             <dl className="grid grid-cols-1 gap-4">
-              {Object.entries(product.attributes).map(([key, value]) => (
-                value && (
-                  <div key={key} className="flex justify-between">
-                    <dt className="text-gray-500 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</dt>
-                    <dd className="font-medium">{value.toString()}</dd>
-                  </div>
-                )
-              ))}
+              {Object.entries(product.attributes).map(
+                ([key, value]) =>
+                  value && (
+                    <div key={key} className="flex justify-between">
+                      <dt className="text-gray-500 capitalize">
+                        {key.replace(/([A-Z])/g, " $1").trim()}
+                      </dt>
+                      <dd className="font-medium">{value.toString()}</dd>
+                    </div>
+                  )
+              )}
             </dl>
+            <div className="flex flex-wrap gap-2 my-4">
+              {Object.entries(product.tags).map(
+                ([key, value]) =>
+                  value && (
+                    <Badge key={key} variant="outline">
+                      {value.toString()}
+                    </Badge>
+                  )
+              )}
+            </div>
           </div>
         </div>
       </div>
     </div>
-  )
-} 
+  );
+}

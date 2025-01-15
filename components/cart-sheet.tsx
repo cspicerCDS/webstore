@@ -3,6 +3,7 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetClose } from "@/com
 import { X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 interface CartSheetProps {
   children: React.ReactNode;
@@ -37,7 +38,9 @@ function TrashIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function CartSheet({ children }: CartSheetProps) {
+  const router = useRouter();
   const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const updateCart = () => {
@@ -70,7 +73,7 @@ export default function CartSheet({ children }: CartSheetProps) {
   const cartTotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         {children}
       </SheetTrigger>
@@ -111,6 +114,15 @@ export default function CartSheet({ children }: CartSheetProps) {
                   <p className="text-lg font-semibold">${cartTotal.toFixed(2)}</p>
                 </div>
               </div>
+              <Button 
+                className="mt-4 w-full bg-yellow-400 hover:bg-yellow-500 text-black py-2 px-4 rounded-lg transition-colors" 
+                onClick={() => {
+                  setIsOpen(false)
+                  router.push('/checkout')
+                }}
+              >
+                Checkout
+              </Button>
             </>
           )}
           <SheetClose asChild>

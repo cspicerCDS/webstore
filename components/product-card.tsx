@@ -50,7 +50,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <Image
             src={product.images[0]}
             alt={product.name}
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full object-cover object-center group-hover:scale-110 transition-all duration-300"
             width={400}
             height={400}
             unoptimized

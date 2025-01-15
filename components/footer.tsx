@@ -152,7 +152,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-slate-600 mt-8 pt-8">
           <p className="text-sm text-center text-slate-400 dark:text-slate-400">
-            © 2024 PlatterParty Music. All rights reserved.
+            © {new Date().getFullYear()} PlatterParty Music. All rights reserved.
           </p>
         </div>
       </div>

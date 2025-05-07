@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 export default function AccountPage() {
   const [isLogin, setIsLogin] = useState(true)
@@ -32,7 +33,7 @@ export default function AccountPage() {
           <form className="space-y-4">
             <div className="space-y-2">
               <label className="text-sm font-medium">Email</label>
-              <input
+              <Input
                 type="email"
                 placeholder="Enter your email"
                 className="w-full px-3 py-2 border rounded-md"
@@ -40,7 +41,7 @@ export default function AccountPage() {
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium">Password</label>
-              <input
+              <Input
                 type="password"
                 placeholder="Enter your password"
                 className="w-full px-3 py-2 border rounded-md"
@@ -50,10 +51,9 @@ export default function AccountPage() {
             {!isLogin && (
               <div className="space-y-2">
                 <label className="text-sm font-medium">Confirm Password</label>
-                <input
+                <Input
                   type="password"
                   placeholder="Confirm your password"
-                  className="w-full px-3 py-2 border rounded-md"
                 />
               </div>
             )}

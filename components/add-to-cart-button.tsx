@@ -35,7 +35,7 @@ export default function AddToCartButton({ product }: { product: Product }) {
       title: "Added to Cart",
       description: `${product.name} has been added to your cart.`,
       duration: 2000,
-      className: "bg-white text-slate-600"
+      className: "bg-yellow-400 text-black"
     })
   }
 
